@@ -570,7 +570,6 @@ cc_library(
         "//conditions:default": NO_ASM_DEFINES,
     }),
     defines = COMMON_DEFINES,
-    local_defines = COMMON_LOCAL_DEFINES,
     includes = LIBCRYPTO_INCLUDES + select({
         "@platforms//os:windows": LIBCRYPTO_WINDOWS_INCLUDES,
         "//conditions:default": [],
@@ -592,6 +591,7 @@ cc_library(
             "-pthread",
         ],
     }),
+    local_defines = COMMON_LOCAL_DEFINES,
     textual_hdrs = CRYPTO_TEXTUAL_HDRS,
     visibility = ["//visibility:public"],
 )
@@ -642,12 +642,12 @@ cc_library(
         "//conditions:default": NO_ASM_DEFINES,
     }),
     defines = COMMON_DEFINES,
-    local_defines = COMMON_LOCAL_DEFINES,
     includes = ["include"],
     linkopts = select({
         "@platforms//os:windows": [],
         "//conditions:default": ["-lc"],
     }),
+    local_defines = COMMON_LOCAL_DEFINES,
     visibility = ["//visibility:public"],
     deps = [":crypto"],
 )
@@ -713,11 +713,11 @@ cc_binary(
         "//conditions:default": [],
     }),
     defines = COMMON_DEFINES,
-    local_defines = COMMON_LOCAL_DEFINES,
     includes = [
         "apps",
         "apps/include",
     ],
+    local_defines = COMMON_LOCAL_DEFINES,
     visibility = ["//visibility:public"],
     deps = [":ssl"],
 )
